@@ -2,7 +2,7 @@
 	"name": "@kumardeo/file-size",
 	"version": "0.0.1",
 	"private": false,
-	"description": "Utilities for calculating file size",
+	"description": "An utility for calculating file or directory size",
 	"keywords": [
 		"file",
 		"file-size",
