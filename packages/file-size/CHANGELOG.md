@@ -1,5 +1,11 @@
 # @kumardeo/file-size
 
+## 0.0.2
+
+### Patch Changes
+
+- [`f18ca83`](https://github.com/kumardeo/kumardeo-npm/commit/f18ca832be311f1ab420189fbe71ab8f5571de39) Thanks [@kumardeo](https://github.com/kumardeo)! - docs(file-size): Added code snippets
+
 ## 0.0.1
 
 ### Patch Changes
