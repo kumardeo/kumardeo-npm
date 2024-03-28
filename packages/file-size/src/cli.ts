@@ -41,7 +41,6 @@ const cli = meow(
 			level: {
 				shortFlag: "l",
 				type: "number",
-				default: 9,
 				isRequired: false
 			},
 			gzip: {

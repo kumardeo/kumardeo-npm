@@ -3,10 +3,28 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "Utilities for calculating file size",
+	"keywords": [
+		"file",
+		"file-size",
+		"gzip",
+		"gzip-size",
+		"bytes"
+	],
 	"license": "MIT",
-	"repository": "kumardeo/kumardeo-npm",
-	"bugs": "https://github.com/kumardeo/kumardeo-npm/issues",
-	"homepage": "https://github.com/kumardeo/kumardeo-npm/tree/main/packages/file-size",
+	"author": {
+		"name": "Deo Kumar",
+		"email": "deo@fineshopdesign.com",
+		"url": "https://github.com/kumardeo"
+	},
+	"homepage": "https://github.com/kumardeo/kumardeo-npm/tree/main/packages/file-size#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kumardeo/kumardeo-npm.git",
+		"directory": "packages/file-size"
+	},
+	"bugs": {
+		"url": "https://github.com/kumardeo/kumardeo-npm/issues"
+	},
 	"scripts": {
 		"lint": "cross-env DEBUG=eslint:cli-engine eslint --fix --ignore-path ../../.eslintignore .",
 		"format": "prettier --write --ignore-path ../../.prettierignore .",
