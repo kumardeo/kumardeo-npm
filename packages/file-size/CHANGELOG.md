@@ -1,5 +1,12 @@
 # @kumardeo/file-size
 
+## 0.0.3
+
+### Patch Changes
+
+- [`ca0c5e2`](https://github.com/kumardeo/kumardeo-npm/commit/ca0c5e207beff38f6ab67cca9c996435278495ec) Thanks [@kumardeo](https://github.com/kumardeo)! - added new flags `--max-frac-digits`, `--bits`, `--si`
+  renamed flag `--include-original` to `--original`
+
 ## 0.0.2
 
 ### Patch Changes
