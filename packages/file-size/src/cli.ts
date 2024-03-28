@@ -5,7 +5,7 @@
 import process from "node:process";
 import fs from "node:fs";
 import meow from "meow";
-import prettyBytes from "pretty-bytes";
+import prettyBytes, { type Options as PrettyBytesOptions } from "pretty-bytes";
 import chalk from "chalk";
 import getStdin from "get-stdin";
 import {
@@ -17,23 +17,29 @@ import {
 const cli = meow(
 	`
   Usage
-	  $ file-size <file>
+	  $ file-size <path>
 	  $ cat <file> | file-size
 
 	Options
-	  --level             Compression level [0-9] (Default: -1)
-	  --raw               Display value in bytes
-	  --include-original  Include original size
-	  --include           Regex to match for files to include
-	  --exclude           Regex to match for files to exclude
+	  --level, -l                Compression level [0-9] (Default: -1)
+	  --gzip, -g                 Print gzip size
+	  --raw, -r                  Display value in bytes
+	  --original, -o             Include original size (Only available with --gzip)
+	  --si, -s                   Format size using the SI Prefix instead of the Binary Prefix.
+	  --bits, -b                 Format size as bits instead of bytes
+	  --max-frac-digits, -m      Maximum Fraction Digits (Default: 3)
+	  --include, -i              Regex to match for files to include
+	  --exclude, -e              Regex to match for files to exclude
 
 	Examples
 	  $ file-size unicorn.png
-	  192 kB
+	  192 KiB
 	  $ file-size unicorn.png --raw
 	  192256
-	  $ file-size unicorn.png --include-original
-	  392 kB → 192 kB
+	  $ file-size unicorn.png --gzip --original
+	  392 KiB → 192 KiB
+	  $ file-size my-dir --gzip --include ".(js|ts)$" --max-frac-digits 2
+	  60.67 KiB
 `,
 	{
 		importMeta: import.meta,
@@ -53,7 +59,7 @@ const cli = meow(
 				type: "boolean",
 				isRequired: false
 			},
-			includeOriginal: {
+			original: {
 				shortFlag: "o",
 				type: "boolean",
 				isRequired: false
@@ -68,6 +74,24 @@ const cli = meow(
 				shortFlag: "e",
 				type: "string",
 				isMultiple: true,
+				isRequired: false
+			},
+			si: {
+				shortFlag: "s",
+				type: "boolean",
+				default: false,
+				isRequired: false
+			},
+			bits: {
+				shortFlag: "b",
+				type: "boolean",
+				default: false,
+				isRequired: false
+			},
+			maxDigits: {
+				shortFlag: "m",
+				type: "number",
+				default: 3,
 				isRequired: false
 			}
 		}
@@ -110,24 +134,25 @@ if (input) {
 }
 
 const { size, gzip } = result;
+const prettyBytesOptions: PrettyBytesOptions = {
+	binary: !cli.flags.si,
+	maximumFractionDigits: cli.flags.maxDigits,
+	bits: cli.flags.bits
+};
 
 let output;
 
 if (cli.flags.gzip) {
-	output = cli.flags.raw
-		? gzip
-		: prettyBytes(gzip, { binary: true, maximumFractionDigits: 3 });
+	output = cli.flags.raw ? gzip : prettyBytes(gzip, prettyBytesOptions);
 
-	if (cli.flags.includeOriginal) {
+	if (cli.flags.original) {
 		output =
-			(cli.flags.raw ? size : prettyBytes(size, { maximumFractionDigits: 3 })) +
+			(cli.flags.raw ? size : prettyBytes(size, prettyBytesOptions)) +
 			chalk.dim(" → ") +
 			output;
 	}
 } else {
-	output = cli.flags.raw
-		? size
-		: prettyBytes(size, { maximumFractionDigits: 3 });
+	output = cli.flags.raw ? size : prettyBytes(size, prettyBytesOptions);
 }
 
 console.log(output);

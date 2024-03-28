@@ -13,7 +13,7 @@ npm install @kumardeo/file-size
 ## CLI
 
 ```shell
-npx @kumardeo/file-size build --gzip --include .(js|ts)$
+npx @kumardeo/file-size build --gzip --include ".(js|ts)$"
 ```
 
 ## API
