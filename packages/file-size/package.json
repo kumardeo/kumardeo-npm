@@ -1,6 +1,6 @@
 {
 	"name": "@kumardeo/file-size",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"private": false,
 	"description": "Utilities for calculating file size",
 	"license": "MIT",
