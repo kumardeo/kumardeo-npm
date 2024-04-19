@@ -13,7 +13,8 @@
 		"noUnusedParameters": false,
 		"baseUrl": ".",
 		"outDir": "dist",
-		"types": ["node", "duplexer3"]
+		"types": ["node", "duplexer3"],
+		"extendedDiagnostics": true
 	},
 	"include": ["src", "declarations.d.ts"],
 	"exclude": ["node_modules"]
