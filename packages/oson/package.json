@@ -1,0 +1,45 @@
+{
+	"name": "@kumardeo/oson",
+	"version": "0.0.0",
+	"private": false,
+	"description": "json has a bunch of problems. oson fixes them.",
+	"keywords": [],
+	"license": "MIT",
+	"author": {
+		"name": "KnorpelSenf",
+		"url": "https://github.com/KnorpelSenf"
+	},
+	"homepage": "https://github.com/kumardeo/kumardeo-npm/tree/main/packages/oson#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kumardeo/kumardeo-npm.git",
+		"directory": "packages/oson"
+	},
+	"bugs": {
+		"url": "https://github.com/kumardeo/kumardeo-npm/issues"
+	},
+	"scripts": {
+		"lint": "cross-env DEBUG=eslint:cli-engine eslint --fix --ignore-path ../../.eslintignore .",
+		"format": "prettier --write --ignore-path ../../.prettierignore .",
+		"build": "npm run clean && tsc",
+		"clean": "rimraf dist"
+	},
+	"files": [
+		"dist"
+	],
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"*": [
+				"./dist/index.d.ts"
+			]
+		}
+	}
+}
